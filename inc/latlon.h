@@ -4,20 +4,21 @@
 #ifndef __LAT_LON_H__
 #define __LAT_LON_H__
 
+namespace LatLonUtility {
 class LatLon {
-  public:
-    LatLon(): lat_(0.0), lon_(0.0) {}
-    LatLon(const double lat, const double lon): lat_(lat), lon_(lon) {}
-    virtual ~LatLon() {}
-    LatLon(const LatLon&) = default;
-    LatLon& operator=(const LatLon&) = default;
+ public:
+  LatLon() : lat_(0.0), lon_(0.0) {}
+  LatLon(const double lat, const double lon) : lat_(lat), lon_(lon) {}
+  virtual ~LatLon() {}
+  LatLon(const LatLon&) = default;
+  LatLon& operator=(const LatLon&) = default;
 
-    double getLat() const { return lat_; }
-    double getLon() const { return lon_; }
+  double getLat() const { return lat_; }
+  double getLon() const { return lon_; }
 
-  private:
-    double lat_;
-    double lon_;
+ private:
+  double lat_;
+  double lon_;
 };
-
+}
 #endif

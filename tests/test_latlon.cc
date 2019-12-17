@@ -1,6 +1,8 @@
 #include <gtest/gtest.h>
 #include "latlon.h"
 
+using namespace LatLonUtility;
+
 TEST(LatLonTest, BasicInstanceOperation) {
   const double tokyo_lat = 35.658581;
   const double tokyo_lon = 139.745433;

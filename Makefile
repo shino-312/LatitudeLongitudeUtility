@@ -28,7 +28,7 @@ build: create_dirs $(TEST_TARGET)  ## Build test programs
 
 .PHONY: clean
 clean:  ## Delete binaries
-	rm $(CXX_OBJECTS) $(TEST_OBJECTS)
+	@rm $(CXX_OBJECTS) $(TEST_OBJECTS)
 
 .PHONY: test
 test:  ## Run tests
@@ -36,8 +36,12 @@ test:  ## Run tests
 
 .PHONY: create_dirs
 create_dirs:  ## Create neccesary directories to run
-	$(MKDIR_P) $(BIN_ROOT)
+	@$(MKDIR_P) $(BIN_ROOT)
 
+.PHONY: format
+format:  ## Format with clang-format
+	@find . -name "*.h"   | xargs -I {} clang-format -i -style=file {}
+	@find . -name "*.cc"  | xargs -I {} clang-format -i -style=file {}
 
 ##################################################
 
