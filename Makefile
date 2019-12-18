@@ -10,7 +10,7 @@ SRC_ROOT       = ./src/
 TEST_ROOT      = ./tests/
 
 CXX_SRCS       = $(shell find $(SRC_ROOT) -name "*.cc")
-CXX_OBJECTS    = $(addprefix $(BIN_ROOT), $(notdir $(CXX_FILES:.cc=.o)))
+CXX_OBJECTS    = $(addprefix $(BIN_ROOT), $(patsubst %.cc, %.o, $(notdir $(CXX_SRCS))))
 
 TEST_SRCS      = $(shell find $(TEST_ROOT) -name "*.cc")
 TEST_OBJECTS   = $(addprefix $(BIN_ROOT), $(patsubst %.cc, %.o, $(notdir $(TEST_SRCS))))
