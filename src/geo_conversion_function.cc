@@ -39,4 +39,36 @@ Blh convEcefToBlh(const Ecef& ecef) {
 
   return Blh{lat, lon, height};
 }
+
+Enu calcEnu(const Blh& origin, const Blh& destination) {
+  const Ecef diff = convBlhToEcef(destination) - convBlhToEcef(origin);
+
+  const double sinLat = sin(origin.lat);
+  const double sinLon = sin(origin.lon);
+  const double cosLat = cos(origin.lat);
+  const double cosLon = cos(origin.lon);
+
+  const double e = -sinLon * diff.x + cosLon * diff.y;
+  const double n =
+      -cosLon * sinLat * diff.x - sinLon * sinLat * diff.y + cosLat * diff.z;
+  const double u =
+      cosLon * cosLat * diff.x + sinLon * cosLat * diff.y + sinLat * diff.z;
+
+  return Enu{e, n, u};
+}
+
+Blh calcBlh(const Blh& origin, const Enu& diff) {
+  const double sinLat = sin(origin.lat);
+  const double sinLon = sin(origin.lon);
+  const double cosLat = cos(origin.lat);
+  const double cosLon = cos(origin.lon);
+
+  const double x =
+      -sinLon * diff.e - cosLon * sinLat * diff.n + cosLon * cosLat * diff.u;
+  const double y =
+      cosLon * diff.e - sinLon * sinLat * diff.n + sinLon * cosLat * diff.u;
+  const double z = cosLat * diff.n + sinLat * diff.u;
+
+  return convEcefToBlh(convBlhToEcef(origin) + Ecef{x, y, z});
+}
 }

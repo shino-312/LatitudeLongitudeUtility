@@ -41,6 +41,8 @@ struct Enu {
   double e;
   double n;
   double u;
+  Enu operator+(const Enu& other);
+  Enu operator-(const Enu& other);
 };
 
 /**
@@ -51,6 +53,8 @@ struct Ecef {
   double x;
   double y;
   double z;
+  Ecef operator+(const Ecef& other);
+  Ecef operator-(const Ecef& other);
 };
 }
 #endif

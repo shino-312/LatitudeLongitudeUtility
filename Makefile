@@ -23,6 +23,13 @@ TEST_TARGET    = $(BIN_ROOT)a.out
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
+.PHONY: all
+all:  ## make clean, build, and test
+	make clean
+	make build
+	make test
+
+
 .PHONY: build
 build: create_dirs $(TEST_TARGET)  ## Build test programs
 

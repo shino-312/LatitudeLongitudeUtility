@@ -7,6 +7,7 @@ namespace geoutility {
 
 void trace(const Blh& blh);
 void trace(const Ecef& ecef);
+void trace(const Enu& enu);
 }
 
 #endif
