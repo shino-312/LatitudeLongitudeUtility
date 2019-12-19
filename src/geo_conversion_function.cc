@@ -6,6 +6,19 @@
 
 namespace geoutility {
 
+// equatorial radius of the earth
+static const double A = 6378137.0;
+
+// inverse flattening
+static const double INV_F = 298.257223563;
+static const double F = 1.0 / INV_F;
+
+// eccentricity
+static const double E2 = 2.0 * F - F * F;
+
+// polar radius of the earth
+static const double B = (1.0 - F) * A;
+
 Ecef convBlhToEcef(const Blh& blh) {
   const double sinLat = sin(blh.lat);
   const double cosLat = cos(blh.lat);

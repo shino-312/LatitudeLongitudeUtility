@@ -14,15 +14,15 @@ TEST(BlhEcef, FromBlh) {
   Blh place = {lat, lon, height};
   trace(place);
 
-  Ecef ret1 = convBlhToEcef(place);
-  trace(ret1);
+  Ecef tmp = convBlhToEcef(place);
+  trace(tmp);
 
-  Blh ret2 = convEcefToBlh(ret1);
-  trace(ret2);
+  Blh place_restored = convEcefToBlh(tmp);
+  trace(place_restored);
 
-  EXPECT_NEAR(place.lat, ret2.lat, DOUBLE_ERR);
-  EXPECT_NEAR(place.lon, ret2.lon, DOUBLE_ERR);
-  EXPECT_NEAR(place.height, ret2.height, DOUBLE_ERR);
+  EXPECT_NEAR(place.lat,    place_restored.lat, DOUBLE_ERR);
+  EXPECT_NEAR(place.lon,    place_restored.lon, DOUBLE_ERR);
+  EXPECT_NEAR(place.height, place_restored.height, DOUBLE_ERR);
 }
 
 TEST(BlhEcef, FromEcef) {
@@ -33,15 +33,15 @@ TEST(BlhEcef, FromEcef) {
   Ecef place = {x, y, z};
   trace(place);
 
-  Blh ret1 = convEcefToBlh(place);
-  trace(ret1);
+  Blh tmp = convEcefToBlh(place);
+  trace(tmp);
 
-  Ecef ret2 = convBlhToEcef(ret1);
-  trace(ret2);
+  Ecef place_restored = convBlhToEcef(tmp);
+  trace(place_restored);
 
-  EXPECT_NEAR(place.x, ret2.x, DOUBLE_ERR);
-  EXPECT_NEAR(place.y, ret2.y, DOUBLE_ERR);
-  EXPECT_NEAR(place.z, ret2.z, DOUBLE_ERR);
+  EXPECT_NEAR(place.x, place_restored.x, DOUBLE_ERR);
+  EXPECT_NEAR(place.y, place_restored.y, DOUBLE_ERR);
+  EXPECT_NEAR(place.z, place_restored.z, DOUBLE_ERR);
 }
 
 TEST(BlhEnu, DistanceBetweenTwoLocations) {
@@ -54,7 +54,7 @@ TEST(BlhEnu, DistanceBetweenTwoLocations) {
   const auto p2_restored = calcBlh(p1, distance);
   trace(p2_restored);
 
-  EXPECT_NEAR(p2.lat, p2_restored.lat, DOUBLE_ERR);
-  EXPECT_NEAR(p2.lon, p2_restored.lon, DOUBLE_ERR);
+  EXPECT_NEAR(p2.lat,    p2_restored.lat,    DOUBLE_ERR);
+  EXPECT_NEAR(p2.lon,    p2_restored.lon,    DOUBLE_ERR);
   EXPECT_NEAR(p2.height, p2_restored.height, DOUBLE_ERR);
 }
