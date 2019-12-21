@@ -34,7 +34,7 @@ runsample                      Run sample main program
 runtest                        Run tests
 ```
 
-If you try minimum sample, just do this (googletest is not necessary).
+If you want a minimum sample, just do this (googletest is not needed).
 
 ```sh
 make buildsample
@@ -45,11 +45,11 @@ make runsample
 
 See [`sample_main.cc`](./sample_main.cc) about how to use conversion functions.
 
-Its result should be as follows.
+Result should be as follows.
 
 ```
 $ make runsample
-././bin/sample.out
+./bin/sample.out
 From Tokyo Station to Tokyo Imperial Palace:
 East : -1330.698522 [m]
 North: 810.056878 [m]
@@ -62,7 +62,7 @@ Longitude: 139.752100(raw) vs 139.752100(restored)
 
 ## Q&A
 
-### What does BLH stands for?
+### What does BLH stand for?
 
 I don't know why BLH means latitude/longitude (and height).
 According to Google, B and L come from German words which mean latitude and longitude respectively.

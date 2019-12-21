@@ -46,11 +46,11 @@ clean:  ## Delete binaries
 
 .PHONY: runsample
 runsample:  ## Run sample main program
-	./$(SAMPLE_TARGET)
+	$(SAMPLE_TARGET)
 
 .PHONY: runtest
 runtest:  ## Run tests
-	./$(TEST_TARGET)
+	$(TEST_TARGET)
 
 .PHONY: create_dirs
 create_dirs:  ## Create neccesary directories to run
