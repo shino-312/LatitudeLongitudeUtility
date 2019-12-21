@@ -22,4 +22,4 @@ void trace(const Enu& enu) {
   printf("[Enu] e, n, u: %f, %f, %f\n", enu.e, enu.n, enu.u);
 #endif
 }
-}
+}  // namespace geoutility

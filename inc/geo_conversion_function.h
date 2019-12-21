@@ -31,6 +31,6 @@ Enu calcEnu(const Blh& origin, const Blh& destination);
  *         where <diff> away from <origin>
  */
 Blh calcBlh(const Blh& origin, const Enu& diff);
-}
+}  // namespace geoutility
 
 #endif

@@ -84,4 +84,4 @@ Blh calcBlh(const Blh& origin, const Enu& diff) {
 
   return convEcefToBlh(convBlhToEcef(origin) + Ecef{x, y, z});
 }
-}
+}  // namespace geoutility

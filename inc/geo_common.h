@@ -42,5 +42,5 @@ struct Ecef {
   Ecef operator+(const Ecef& other);
   Ecef operator-(const Ecef& other);
 };
-}
+}  // namespace geoutility
 #endif

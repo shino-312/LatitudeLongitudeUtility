@@ -38,4 +38,4 @@ Ecef Ecef::operator-(const Ecef& other) {
   ret.z = this->z - other.z;
   return ret;
 }
-}
+}  // namespace geoutility

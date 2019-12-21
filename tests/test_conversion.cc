@@ -20,8 +20,8 @@ TEST(BlhEcef, FromBlh) {
   Blh place_restored = convEcefToBlh(tmp);
   trace(place_restored);
 
-  EXPECT_NEAR(place.lat,    place_restored.lat, DOUBLE_ERR);
-  EXPECT_NEAR(place.lon,    place_restored.lon, DOUBLE_ERR);
+  EXPECT_NEAR(place.lat, place_restored.lat, DOUBLE_ERR);
+  EXPECT_NEAR(place.lon, place_restored.lon, DOUBLE_ERR);
   EXPECT_NEAR(place.height, place_restored.height, DOUBLE_ERR);
 }
 
@@ -54,7 +54,7 @@ TEST(BlhEnu, DistanceBetweenTwoLocations) {
   const auto p2_restored = calcBlh(p1, distance);
   trace(p2_restored);
 
-  EXPECT_NEAR(p2.lat,    p2_restored.lat,    DOUBLE_ERR);
-  EXPECT_NEAR(p2.lon,    p2_restored.lon,    DOUBLE_ERR);
+  EXPECT_NEAR(p2.lat, p2_restored.lat, DOUBLE_ERR);
+  EXPECT_NEAR(p2.lon, p2_restored.lon, DOUBLE_ERR);
   EXPECT_NEAR(p2.height, p2_restored.height, DOUBLE_ERR);
 }
