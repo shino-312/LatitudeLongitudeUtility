@@ -14,7 +14,10 @@ CXX_OBJECTS    = $(addprefix $(BIN_ROOT), $(patsubst %.cc, %.o, $(notdir $(CXX_S
 
 TEST_SRCS      = $(shell find $(TEST_ROOT) -name "*.cc")
 TEST_OBJECTS   = $(addprefix $(BIN_ROOT), $(patsubst %.cc, %.o, $(notdir $(TEST_SRCS))))
-TEST_TARGET    = $(BIN_ROOT)a.out
+TEST_TARGET    = $(BIN_ROOT)test.out
+
+SAMPLE_TARGET  = $(BIN_ROOT)sample.out
+SAMPLE_MAIN    = ./sample_main.cc
 
 .DEFAULT_GOAL  := help
 
@@ -25,25 +28,33 @@ help:
 
 .PHONY: all
 all:  ## make clean, build, and test
-	-make clean
-	make build
-	make test
+	make clean
+	make buildsample
+	make buildtest
+	make runtest
 
+.PHONY: buildsample
+buildsample: create_dirs $(SAMPLE_TARGET)  ## Build sample programs
 
-.PHONY: build
-build: create_dirs $(TEST_TARGET)  ## Build test programs
+.PHONY: buildtest
+buildtest: create_dirs $(TEST_TARGET)  ## Build test programs
 
 .PHONY: clean
 clean:  ## Delete binaries
-	@rm $(CXX_OBJECTS) $(TEST_OBJECTS)
+	-@rm $(CXX_OBJECTS) $(TEST_OBJECTS)
+	-@rm $(BIN_ROOT) -r
 
-.PHONY: test
-test:  ## Run tests
+.PHONY: runsample
+runsample:  ## Run sample main program
+	./$(SAMPLE_TARGET)
+
+.PHONY: runtest
+runtest:  ## Run tests
 	./$(TEST_TARGET)
 
 .PHONY: create_dirs
 create_dirs:  ## Create neccesary directories to run
-	@$(MKDIR_P) $(BIN_ROOT)
+	-@$(MKDIR_P) $(BIN_ROOT)
 
 .PHONY: format
 format:  ## Format with clang-format
@@ -52,6 +63,10 @@ format:  ## Format with clang-format
 
 ##################################################
 
+$(SAMPLE_TARGET): $(CXX_OBJECTS) $(SAMPLE_MAIN)
+	$(CXX) $(CXXFLAGS) $(INC_DIRS) -o $@ $^
+
+	$(CXX) $(CXXFLAGS) $(INC_DIRS) -o $@ $^ $(LIBS)
 $(TEST_TARGET): $(CXX_OBJECTS) $(TEST_OBJECTS)
 	$(CXX) $(CXXFLAGS) $(INC_DIRS) -o $@ $^ $(LIBS)
 
