@@ -25,7 +25,7 @@ help:
 
 .PHONY: all
 all:  ## make clean, build, and test
-	make clean
+	-make clean
 	make build
 	make test
 
